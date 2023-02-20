@@ -25,38 +25,28 @@ class GamesController < ApplicationController
     true
   end
 
-def score
-  grid = params[:letters]
-    @result = params[:word]
-    attempt = @result
+  def score
+    grid = params[:letters]
+    attempt = params[:word]
+    url = "https://wagon-dictionary.herokuapp.com/#{attempt}"
+    html_file = URI.open(url).read
+    html_doc = JSON.parse(html_file)
 
-  attempt.upcase!
-  array = attempt.chars
-  url = "https://wagon-dictionary.herokuapp.com/#{attempt}"
-  html_file = URI.open(url).read
-  html_doc = JSON.parse(html_file)
-  #time = end_time - start_time
-  # check if in the grid
-  if in_grid?(@result, grid)
-    # now check if in dictionary
-    if html_doc["found"] == true
-      @message = "Congratulations! This is a valid English word, you win!"
-
-      # score = array.size - time
+    if in_grid?(@result, grid)
+      # now check if in dictionary
+      if html_doc["found"] == true
+        @message = "Congratulations! This is a valid English word, you win!"
+        # score = array.size - time
+      else
+        @message = "Nope! This is not an english word"
+        # score = 0
+      end
     else
-      @message = "Nope! This is not an english word"
-
+      @message = "Ooops! The given word is not in the grid"
       # score = 0
     end
-  else
-    @message = "Ooops! The given word is not in the grid"
-
-    # score = 0
+   # TODO: runs the game and return detailed hash of result (with `:score`, `:message` and `:time` keys)
   end
-
-
-  # TODO: runs the game and return detailed hash of result (with `:score`, `:message` and `:time` keys)
-end
 
 
 
