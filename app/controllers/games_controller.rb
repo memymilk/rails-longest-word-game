@@ -32,7 +32,7 @@ class GamesController < ApplicationController
     html_file = URI.open(url).read
     html_doc = JSON.parse(html_file)
 
-    if in_grid?(@result, grid)
+    if in_grid?(attempt, grid)
       # now check if in dictionary
       if html_doc["found"] == true
         @message = "Congratulations! This is a valid English word, you win!"
