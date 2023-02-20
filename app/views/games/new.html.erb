@@ -1,0 +1,18 @@
+
+<div class="container-mine">
+<%  @letters.each do |letter| %>
+ <div class='letter-card'>
+<%= letter %>
+</div>
+<% end %>
+</div>
+<br>
+<h3>New game</h3>
+<h6>What is the longest word you can submit?</h6>
+
+<form action="score" data-turbo="false" class="input-group input-group-lg col-lg-12" method="post" data-turbo="false">
+  <input type="text" name="word" class="col-lg-10">
+  <input type="submit" value="Submit!" class="btn btn-primary col-lg-2">
+  <%= hidden_field_tag :letters, @letters %>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+</form>
