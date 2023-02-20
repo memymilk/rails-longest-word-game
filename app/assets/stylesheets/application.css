@@ -13,3 +13,25 @@
  *= require_tree .
  *= require_self
  */
+
+ .body{
+  font-family: Roboto, sans-serif;
+ }
+
+ .container-mine {
+  display:flex;
+  flex-direction:row;
+}
+
+.letter-card {
+  background-color: rgb(68, 171, 250);
+  stroke:  solid 1px rgb(7, 83, 142);;
+  color: white;
+  padding:10px;
+  min-width:15px;
+  margin-right:10px;
+  border-radius:4px;
+  box-shadow: 1px 1px 3px grey;
+  text-align:center;
+  font-weight:bold;
+}
